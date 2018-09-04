@@ -2,7 +2,7 @@
 .SH NAME
 xtrlock \- Lock X display until password supplied, leaving windows visible
 .SH SYNOPSIS
-.B xtrlock [-b] [-f]
+.B xtrlock [-b] [-f] [-m]
 .SH DESCRIPTION
 .B xtrlock
 locks the X server till the user enters their password at the keyboard.
@@ -34,6 +34,9 @@ blank the screen as well as displaying the padlock
 \fB\-f\fR
 fork after locking is complete, and return success from the parent
 process
+.TP
+\fB\-m\fR
+allow using menu key on the keyboard as an additional unlocking method
 .SH X RESOURCES, CONFIGURATION
 None.
 .SH BUGS

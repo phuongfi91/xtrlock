@@ -81,7 +81,7 @@ int main(int argc, char **argv){
   Cursor cursor;
   Pixmap csr_source,csr_mask;
   XColor csr_fg, csr_bg, dummy, black;
-  int ret, screen, blank = 0, fork_after = 0;
+  int ret, screen, blank = 0, fork_after = 0, menu_key = 0;
 #ifdef SHADOW_PWD
   struct spwd *sp;
 #endif
@@ -95,6 +95,10 @@ int main(int argc, char **argv){
       argv++;
     } else if ((strcmp(argv[1], "-f") == 0)) {
       fork_after = 1;
+      argc--;
+      argv++;
+    } else if ((strcmp(argv[1], "-m") == 0)) {
+      menu_key = 1;
       argc--;
       argv++;
     } else {
@@ -254,6 +258,10 @@ int main(int argc, char **argv){
         timeout= -goodwill*GOODWILLPORTION;
         goodwill+= timeout;
         timeout+= ev.xkey.time + TIMEOUTPERATTEMPT;
+        break;
+      case XK_Menu:
+        if (menu_key == 1)
+            goto loop_x;
         break;
       default:
         if (clen != 1) break;
